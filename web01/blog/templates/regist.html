@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>爱尚品--你的加入，生活多一份美妙！</title>
+	<style>
+    	div,ul,li,a,body,table,tr,td{
+			margin:opx;	
+		}
+		body{
+			width:100%;
+			background-image:url(/static/images/tea7.jpg);
+			background-color:#F93;	
+			font-size:20px;
+			font-family:Georgia, "Times New Roman", Times, serif;
+			color:#991;
+		}
+		
+		#header{
+			position:absolute;
+			left:1100px;
+		}
+		a{
+			 text-decoration:none;
+		}
+		#main{
+			position:fixed;
+			margin:0 auto;
+			left:560px;
+			top:185px;
+			width:400px;
+			height:600px;
+		}
+		
+		
+		
+    </style>
+</head>
+
+<body>
+	<div id="header">
+		<a href="#" title="我的爱尚品（is通行证）" style="color:#999;">我的爱尚品（is通行证）</a> 
+       	<input type="button" value="登录" />   	
+    </div>
+    <div id="main">
+    	<form action="" method="post">{%csrf_token%}
+        <span style="color:#666">***一分钟，完成注册！***</span>
+            <table>
+                {{rf1.as_table}}
+                {{rf2.as_table}}
+            </table>                
+            <span style="font-size:16px;">(此项用于送出礼品，为选填信息)</span><br />
+            <input type="submit" value="确认提交" />
+        </form>
+    </div>
+
+</body>
+</html>

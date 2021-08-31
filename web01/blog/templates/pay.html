@@ -1,0 +1,168 @@
+<!DOCTYPE html><!-- saved from url=(0064)http://docs.bootcss.com/bootstrap-2.3.2/docs/examples/fluid.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>爱尚品--你的加入，生活更加美妙！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="root" >
+
+    <!-- Le styles -->
+    <link href="/static/bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+		background-color:#FCC;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+		background-color:#FCC
+      }
+	  .hero-unit{
+	   background-color:#FCC;		
+	  }
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+	  #main{
+		position:relative;
+		width:1000px;
+		height:640px;
+		border:#F96 5px dotted;
+		margin:0 auto;
+	  }
+	  #main_top{
+		margin:5px;  
+	  }
+	  img{
+		position:relative;
+		width:300px;
+		height:280px;
+		margin:5px;
+	  }
+	  #tip{
+		  width:850px;
+		  height:80px;
+		  background-color:#CCC;
+		  position:relative;
+      	  top:150px;
+		  border:2px dotted #F3CFED;
+	  }
+	 
+    </style>
+    <link href="/static/bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/bootstrap/docs/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/bootstrap/docs/assets/ico/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/bootstrap/docs/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="/static/bootstrap/docs/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="/static/bootstrap/docs/assets/ico/favicon.png">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">爱尚品</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              亲---还在等什么？ 现在就来 <a href="#" class="navbar-link">注册</a>||<a href="#" class="navbar-link">登录</a>吧！
+            </p>
+            <ul class="nav">
+              <li><a href="#">首页</a></li>
+              <li class="active"><a href="#about">开始订购</a></li>
+              <li><a href="#contact">查询订单</a></li>
+              <li><a href="#contact">手机客户端</a></li>
+              <li><a href="#contact">帮助中心</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+	<div id="content"><!--以下是送单的所有信息-->
+        <div id="main">
+            <div id="main_top" >
+                <span class="span4"><a href="#" class="btn btn-success">1 浏览商品订购</a></span><span class="span4"><a href="#" class="btn btn-success">2 确认订购内容</a></span><span><a href="#" class="btn btn-info active">3 结算并提交订单<i class="icon-map-marker"></i></a></span>
+            </div><hr />
+        <div id="info" class="row-fluid" style="margin-left:10px;">
+            <div class="span6">
+                <h4>派送信息</h4>
+                <p><span>顾客姓名 :</span> ***女士</p>
+                <p><span>送达地址 :</span> 北京市人民大学</p>
+            </div>
+            <div class="span6">
+                <h4>其他信息</h4>
+                <p><span>是否需要发票    </span><input type="radio"</p>是  <input type="radio"</p>否
+                <p><span>其他送达要求 : </span><input type="text" value="比如奶茶加冰，限20字以内" /></p>
+            </div>
+        </div>
+        <div style="margin-left:10px;">
+            <h4>联系信息</h4>
+            <div style="border-bottom:1px dashed;margin:20px;">
+                <span style="margin:5px;">联系电话 :</span>183****7837
+                <span style="margin-left:60px;"><a href="#">添加备用联系手机号>></a></span>
+            </div>
+            <div id="time" style="border-bottom:1px dashed; margin:20px;">
+                <span style="margin:5px;">送达时间 : </span>
+                <span>成功提交订单后，预计<b>10</b>分钟左右送达。</span>
+            </div>  
+        </div>
+        <div style="margin:20px;">
+            <span>应付总价 : </span><span>￥20</span><br />
+            <input type="radio" /><span>获到现金付款</span><br />
+            <input type="radio" /><span>网上支付</span>
+        </div>   
+        	
+       
+             
+  	<span class="pull-right" style="">
+      <input type="button" class="btn btn-success " value="<< 返回订购" />
+      <input type="button" class="btn btn-danger " value="提交 >>" style="margin:0 100px;"/>
+ 	</span>
+    <div id="tip">
+    	<h4><b>友情提示</b></h4>
+        <span>点击"<b>提交</b>"后，您的订单会立即下到我们的制作坊开始制作食品，因此我们将无法接受修改或取消订单，请提交前仔细核对订单内容。</span>
+    </div>
+          
+       
+    
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/bootstrap/docs/assets/js/jquery.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-transition.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-alert.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-modal.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-dropdown.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-tab.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-tooltip.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-popover.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-button.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-collapse.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-carousel.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>

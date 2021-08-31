@@ -1,0 +1,179 @@
+<!DOCTYPE html><!-- saved from url=(0064)http://docs.bootcss.com/bootstrap-2.3.2/docs/examples/fluid.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>爱尚品--你的加入，生活更加美妙！order</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="root" >
+
+    <!-- Le styles -->
+    <link href="/static/bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+		background-color:#FCC;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+		background-color:#FCC
+      }
+	  .hero-unit{
+	   background-color:#FCC;		
+	  }
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+	  #main{
+		position:relative;
+		width:1000px;
+		height:640px;
+		border:#F96 5px dotted;
+		margin:0 auto;
+	  }
+	  #main_top{
+		margin:5px;  
+	  }
+	  img{
+		position:absolute;
+		width:300px;
+		height:280px;
+		margin:10px 5px 5px 10px;
+	  }
+	 
+    </style>
+    <link href="/static/bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/bootstrap/docs/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/bootstrap/docs/assets/ico/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/bootstrap/docs/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="/static/bootstrap/docs/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="/static/bootstrap/docs/assets/ico/favicon.png">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">爱尚品</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              亲---还在等什么？ 现在就来 <a href="#" class="navbar-link">注册</a>||<a href="#" class="navbar-link">登录</a>吧！
+            </p>
+            <ul class="nav">
+              <li><a href="#">首页</a></li>
+              <li class="active"><a href="#about">开始订购</a></li>
+              <li><a href="#contact">查询订单</a></li>
+              <li><a href="#contact">手机客户端</a></li>
+              <li><a href="#contact">帮助中心</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+	<div id="main">
+    	<div id="main_top" >
+        	<span class="span4"><a href="#" class="btn btn-success">1 浏览商品订购</a></span><span class="span4"><a href="#" class="btn btn-info active">2 确认订购内容<i class="icon-map-marker"></i></a></span><span><a href="#" class="btn btn-success">3 结算并提交订单</a></span>
+        </div><hr />
+        <div id="order_header">
+        	<form>
+            	<table class="table table-condensed">
+                	<tr class="success">
+                		<th class="error">序号</th>
+                        <th>品名</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>优惠价</th>
+                        <th>小计</th>
+                        <th>优惠备注</th>
+                        <th><a href="#">全部取消</a></th>
+                        <th>详细</th>
+                    </tr>
+                    <tr>
+                    	<td>1</td>
+                        <td>二块蛋挞</td>
+                        <td>$9.9</td>
+                        <td>img+img</td>
+                        <td>--------</td>
+                        <td>$9.9</td>
+                        <td> </td>
+                        <td>#取消</td>
+                    </tr>
+                    <tr>
+                    	<td>1</td>
+                        <td>二块蛋挞</td>
+                        <td>$9.9</td>
+                        <td>img+img</td>
+                        <td>--------</td>
+                        <td>$9.9</td>
+                        <td> </td>
+                        <td>#取消</td>
+                    </tr>
+                    <tr>
+                    	<td>1</td>
+                        <td>二块蛋挞</td>
+                        <td>$9.9</td>
+                        <td>img+img</td>
+                        <td>--------</td>
+                        <td>$9.9</td>
+                        <td> </td>
+                        <td>#取消</td>
+                    </tr>
+                </table>
+                <div style="margin-left:10px;"><!-- 确认订购内容额外信息 start-->
+                    <p><a>使用优惠代码？</a><span class="pull-right" style="margin-right:20px;">小  计 ：888元|外送费 ：8.0元</span></p>
+                    <div style="margin-right:20px; class="pull-right"><span class="pull-right" >总金额：100元</span></div>
+                	<div>
+                    	<i class="icon-gift"></i> <span style="background-color:#C9D7D0;">根据您的订单，您还可以选择以下优惠项目，如您未选择则视为自动放弃。</span>
+                    </div>
+                    <div>
+                        <img src="images/tea6.jpg" />
+                    </div>
+				</div><!-- 确认订购内容额外信息 over-->
+                <span class="pull-right" style="margin-top:310px;">
+                    <input type="button" class="btn btn-success " value="<< 返回订购" />
+                    <input type="button" class="btn btn-success " value="下一步 >>" style="margin:0 100px;"/>
+				</span>
+            </form>
+        </div>
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	 <script src="/static/bootstrap/docs/assets/js/jquery.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-transition.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-alert.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-modal.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-dropdown.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-tab.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-tooltip.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-popover.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-button.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-collapse.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-carousel.js"></script>
+    <script src="/static/bootstrap/docs/assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
