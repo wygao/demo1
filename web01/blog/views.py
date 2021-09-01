@@ -1,7 +1,7 @@
 #-*coding:utf8
 from django.http import HttpResponse
 from django.shortcuts import render_to_response,render
-from blog.models import ProUser,GoodsType,Tea,TeaCake,TeaType,CakeType
+from blog.models import ProUser,Goods,Category
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 from django import forms
@@ -20,15 +20,13 @@ class RegistProUserForm(forms.ModelForm):
         fields = ('tel','addr','QQ')
 
 def index(req):
-    goodstype    = GoodsType.objects.all()
-    teatype      = TeaType.objects.all()
-    caketype     = CakeType.objects.all()
-    tea_list     = Tea.objects.all()
-    teacake_list = TeaCake.objects.all()
+    goods_list    = Goods.objects.all()
+    category_list = Category.objects.all() 
+    categorys     = [category for category in category_list if category.p_category is None]
     if req.user.is_authenticated():
-        return render(req,"index.html",{'user':req.user,'goodstype':goodstype,'teatype':teatype,'caketype':caketype,'tea_list':tea_list,'teacake_list':teacake_list})
+        return render(req,"index.html",{'user':req.user,'goods_list':goods_list,'categorys':categorys})
     else:
-        return render(req,"index.html",{'goodstype':goodstype,'teatype':teatype,'caketype':caketype,'tea_list':tea_list,'teacake_list':teacake_list})
+        return render(req,"index.html",{'goods_list':goods_list})
 
 def regist_user(req):
     if req.method == "POST":
@@ -51,12 +49,12 @@ def login_user(req):
     password = req.POST.get('password')
     user = authenticate(username=username,password=password)
     if user is not None:
-        print 3
+        #print user.username 
         login(req,user)
         return HttpResponse(username)
     else:
         return HttpResponseRedirect('/index/')
-
+'''
 def disp_tea(req):
     goodstype    = GoodsType.objects.all()
     teatype      = TeaType.objects.all()
@@ -64,8 +62,7 @@ def disp_tea(req):
     tid = req.GET.get('tid')
     tea_type = TeaType.objects.get(id=tid)
     tea_list = tea_type.tea_set.all()
-    if req.user.is_authenticated():
-        return render_to_response('disp_tea.html',{'user':req.user,'tea_list':tea_list,'goodstype':goodstype,'teatype':teatype,'caketype':caketype})
+    return render(req, 'disp_tea.html',{'tea_list':tea_list,'goodstype':goodstype,'teatype':teatype,'caketype':caketype})
 
 
 def disp_cake(req):
@@ -75,7 +72,7 @@ def disp_cake(req):
     cid = req.GET.get('cid')
     cake_type = CakeType.objects.get(id=cid)
     teacake_list = cake_type.teacake_set.all()
-    return render_to_response('disp_cake.html',{'teacake_list':teacake_list,'goodstype':goodstype,'teatype':teatype,'caketype':caketype})
+    return render(req, 'disp_cake.html',{'teacake_list':teacake_list,'goodstype':goodstype,'teatype':teatype,'caketype':caketype})
 
 
 
@@ -85,3 +82,4 @@ def order(req):
     return render_to_response("order.html",{})
 def pay(req):
     return render_to_response("pay.html",{})
+    '''

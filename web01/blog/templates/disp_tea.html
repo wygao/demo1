@@ -64,7 +64,6 @@
   </head>
 
   <body>
-
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -77,8 +76,12 @@
           <div class="nav-collapse collapse">
             <span class="navbar-text pull-right btn-group">
                <div id="login_msg" style="font-size:16px;">
+               {% if user.is_authenticated %}
+               <p class='nav'>亲爱的{{user.username}}童鞋,好久不见哦!</p>
+               {% else %}
 				<button class="btn" onclick="regist()" target="#">注册</button>
 				<button class="btn" onclick="toDisplay()" data-target="#myModal" data-toggle="modal" >登录</button>
+                {% endif %}
                </div>
                     <script>
                         function regist(){
@@ -130,7 +133,7 @@
             if(hr.readyState == 4 && hr.status == 200){
                 if(hr.responseText != ''){
                     var login_msg = document.getElementById('login_msg');
-                    login_msg.innerHTML = hr.responseText+',欢迎您的到来 !';
+                    login_msg.innerHTML = '亲爱的'+hr.responseText+'童鞋,好久不见哦!';
                 }
             }
         }
