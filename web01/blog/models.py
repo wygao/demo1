@@ -21,16 +21,35 @@ class Category(models.Model):
     p_category    = models.ForeignKey("self",null=True,blank=True)
     def __unicode__(self):
         return self.category_name
-        
+
+class LineItem(models.Model):  
+    goods       = models.ForeignKey(Goods)  
+    goods_price = models.FloatField()  
+    quantity    = models.IntegerField() 
+    def __unicode__(self):
+        return self.goods 
 
 
 
 
 
+'''
+class ShopCar(models.Model):
+    user = models.OneToOneField(User)
+    goods = models.ManyToManyField(Goods)
+    def __unicode__(self):
+        return self.user
+    
+    def add_goods(self):
+        pass
 
+    def remove_goods(self):
+        pass
 
+    def update_goods(self):
+        pass
 
-
+'''
 
 
 

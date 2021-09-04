@@ -1,11 +1,12 @@
 #-*coding:utf8
 from django.http import HttpResponse
 from django.shortcuts import render_to_response,render
-from blog.models import ProUser,Goods,Category
+from blog.models import ProUser,Goods,Category,LineItem
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 from django import forms
 from django.http import HttpResponseRedirect
+import json
 
 class RegistUserForm(forms.ModelForm):
     username = forms.CharField(label=u'用户名')
@@ -20,13 +21,15 @@ class RegistProUserForm(forms.ModelForm):
         fields = ('tel','addr','QQ')
 
 def index(req):
+    goodlist = req.session.get('goodlist')
+
     goods_list    = Goods.objects.all()
     category_list = Category.objects.all() 
     categorys     = [category for category in category_list if category.p_category is None]
     if req.user.is_authenticated():
-        return render(req,"index.html",{'user':req.user,'goods_list':goods_list,'categorys':categorys})
+        return render(req,"index.html",{'user':req.user,'goods_list':goods_list,'categorys':categorys, 'goodlist':goodlist})
     else:
-        return render(req,"index.html",{'goods_list':goods_list})
+        return render(req,"index.html",{'goods_list':goods_list,'categorys':categorys, 'goodlist':goodlist})
 
 def regist_user(req):
     if req.method == "POST":
@@ -54,32 +57,56 @@ def login_user(req):
         return HttpResponse(username)
     else:
         return HttpResponseRedirect('/index/')
+
+def disp_goods(req):
+    goods_list    = Goods.objects.all()
+    category_list = Category.objects.all() 
+    categorys     = [category for category in category_list if category.p_category is None]
+    type_id       = req.GET.get("type_id")
+    goods_type    = Category.objects.get(id=type_id) 
+    goods_list    = goods_type.goods_set.all()
+    return render(req,"index.html",{'goods_list':goods_list,'categorys':categorys,'goods_list':goods_list})
+
+def buy_goods(req):
+    goodlist = req.POST.get("goodlist")
+    #print goodlist
+    exec "goodlist = %s"%goodlist
+    #goodlist = json.loads(goodlist)
+    #print type(goodlist)
+    #print goodlist
+    req.session['goodlist'] = goodlist
+    return HttpResponse("ok")
+
+
+
+
+
+
+
+
+
+
+
 '''
-def disp_tea(req):
-    goodstype    = GoodsType.objects.all()
-    teatype      = TeaType.objects.all()
-    caketype     = CakeType.objects.all()
-    tid = req.GET.get('tid')
-    tea_type = TeaType.objects.get(id=tid)
-    tea_list = tea_type.tea_set.all()
-    return render(req, 'disp_tea.html',{'tea_list':tea_list,'goodstype':goodstype,'teatype':teatype,'caketype':caketype})
+class ShopCar(object):  
+    def __init__(self, *args, **kwargs):  
+        self.items = []  
+        self.total_price = 0  
+    def add_product(self,product):  
+        self.total_price += goods.price  
+        for item in self.items:  
+            if item.goods.id == goods.id:  
+                item.quantity += 1   
+                return  
+        self.items.append(LineItem(product=product,goods_price=goods.price,quantity=1))
 
-
-def disp_cake(req):
-    goodstype    = GoodsType.objects.all()
-    teatype      = TeaType.objects.all()
-    caketype     = CakeType.objects.all()
-    cid = req.GET.get('cid')
-    cake_type = CakeType.objects.get(id=cid)
-    teacake_list = cake_type.teacake_set.all()
-    return render(req, 'disp_cake.html',{'teacake_list':teacake_list,'goodstype':goodstype,'teatype':teatype,'caketype':caketype})
+def order(req):
+    return render_to_response("order.html",{})
+def pay(req):
+    return render_to_response("pay.html",{})
 
 
 
 def logout_user(req):
     pass
-def order(req):
-    return render_to_response("order.html",{})
-def pay(req):
-    return render_to_response("pay.html",{})
     '''

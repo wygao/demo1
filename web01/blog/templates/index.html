@@ -48,6 +48,7 @@
       #car{
         position:fixed; 
         border:5px #F96 dotted;       
+        border-radius:5px;
         width:250px;
         height:450px;
         margin:10px 20px;
@@ -62,10 +63,52 @@
 
       <link rel="shortcut icon" href="/static/bootstrap/img/glyphicons-halflings.png">
       <link rel="shortcut icon" href="/static/bootstrap/img/glyphicons-halflings-white.png">
+
+      <script type="text/javascript">
+         $(document).ready(function(){
+             function contains(a,obj){
+                 for(var i=0; i<a.length; i++){
+                     if(a[i].goods_id == obj.goods_id)
+                         return true;
+                 }
+                 return false;
+             }
+
+             function Add_Quantity(a,obj){
+                 for(var i=0; i<a.length; i++){
+                     if(a[i].goods_id == obj.goods_id)
+                         a[i].goods_quantity ++;
+                 }
+             }
+
+             function disp_goods(){
+                 var car = $("#shop_car");
+                 car.text('');
+                 for(var i=0; i<goodlist.length;i++){
+                    $(car).append("<tr><td>"+goodlist[i].goods_name+"</td><td><i class='icon-plus'></i> "+goodlist[i].goods_quantity+" <i class='icon-minus'></i></td><td>"+goodlist[i].goods_price+"</td><td><i class='icon-remove'></i></td></tr>");
+                    }
+             }   
+
+             var goodlist = new Array();  //生成一个数组
+             $(".btn").click(function(){
+                 var JSONObject = {
+                 "goods_id": $(this).attr("goods_id"),
+                 "goods_name": $(this).siblings("h3").html(),
+                 "goods_price": $(this).siblings("h4").html(),
+                 "goods_quantity": 1
+                 };
+                 if (contains(goodlist,JSONObject)){
+                     Add_Quantity(goodlist,JSONObject);
+                 }else{
+                     goodlist.push(JSONObject);
+                 }
+                  $.post("/buy_goods/",{"goodlist":JSON.stringify(goodlist)});
+                 disp_goods();
+             });    
+          });
+      </script>
   </head>
-
   <body>
-
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -151,23 +194,14 @@
                       <li><a href="#">新品推介</a></li>
                       <li><a href="#">团购进行中</a></li>
                       {%for category in categorys%}
-                        <li class="nav-header"><a href="/tea/?tid={{tea.id}}">{{category.category_name}}</a></li>
-                        {%for cate in category.category_set.all%}
-                            <li><a href="#">{{cate.category_name}}</a></li>
+                        <li class="nav-header">{{category.category_name}}</li>
+                        {%for type in category.category_set.all%}
+                            <li><a href="/type/?type_id={{type.id}}">{{type.category_name}}</a></li>
                         {%endfor%}
                       {%endfor%}
                   </ul>
                   </div><!-- id= /list-->
           </div><!--.span2-->
-             <script type="text/javascript">
-                 $(document).ready(function(){
-                     $(".btn").click(function(){
-                         var name  = $(this).siblings("h3").html();
-                         var price = $(this).siblings("h4").html();
-                         $("#shop_car").append("<tr><td>"+name+"</td><td></td><td>"+price+"</td></tr>");
-                     });        
-                 });
-             </script>
           
           <div class="span7">
             <div class="row-fuid">
@@ -175,9 +209,9 @@
                <div class=span4>
                    <div class="thumbnail">
                        <img src="/static/{{goods.img}}" alt="img" />
-                       <h3 teaname="{{goods.name}}">{{goods.name}}</h3>
-                       <h4 teaprice="{{tea.price}}">{{goods.price}}元</h4>
-                       <button class="btn">加入购物车 &raquo;</button>
+                       <h3 goods_name="{{goods.name}}">{{goods.name}}</h3>
+                       <h4 goods_price="{{tea.price}}">￥{{goods.price|floatformat:"2"}}</h4>
+                       <button goods_id="{{goods.id}}" class="btn" >加入购物车 &raquo;</button>
                    </div><!--/thumbnail-->
                </div><!--/span4-->
                  {%if forloop.counter|divisibleby:3%}
@@ -188,27 +222,36 @@
             </div>
             </div><!--.span8-->
          
+
       	  <div class="span3 ">
              <div id="car"><!--购物车开始 -->
-               <span><h3>购物车</h3></span>
-                  <div id="order_header">
-                	<form>
-                        <table id="shop_car" class="table table-condensed table-hover">
+               {% block title %} 我的购物车 {% endblock %}
+               {% block content %}
+               {{goodlist}}
+                    <table class="table table-condensed">
+                        <thead>
                             <tr>
-                                <th>品名</th><th>数量</th><th>价格</th><th>取消</th>
+                                <th class="header">品名</th class="yellow header"><th>数量</th><th>价格</th><th>取消</th>
                             </tr>
-                        </table>
-                    </form>
-                  </div>
-                  <div id="order-middle">
-                     <span>小计：                 </span><br />
-                     <span>外送费：                 </span><br />
-                     <span>合计：                 </span><br />            
-          		  </div>
-                  <div id="order_footer">
-                     <input type="button" class="btn" value="进入结算 &raquo" />
-                     <p>提醒：根据你最终提交订单时间，送达时间可能略有调整。</p> 
-                  </div>
+                        </thead>
+                        <tbody class="tbody table-hover" id="shop_car">
+                            <tr> </tr>
+                            <tr> </tr><hr />
+                            <tr><th>小计：</th><td></td></tr> 
+                            <tr><th>外送费：</th><td></td></tr>
+                            <tr><th>合计：</th><td></td></tr>            
+                        </tbody>
+                    </table>
+                    <div id="order_footer">
+                       <button class="btn" onclick="ToOrder()">进入结算 &raquo</button>
+                       <div>提醒：根据你最终提交订单时间，送达时间可能略有调整。</div> 
+                    </div>
+               {% endblock %}
+               <script>
+                    function ToOrder(){
+                       location.assign("/order/");
+                    }
+               </script>
       		 </div><!--购物车结束 -->
           </div><!--/.span3 112行-->
       </div><!--.row-fluid-->

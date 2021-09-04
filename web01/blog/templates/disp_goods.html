@@ -223,10 +223,15 @@
                         </tbody>
                     </table>
                     <div id="order_footer">
-                       <button class="btn" onclick="/order/">进入结算 &raquo</button>
+                       <button class="btn" onclick="ToOrder()">进入结算 &raquo</button>
                        <div>提醒：根据你最终提交订单时间，送达时间可能略有调整。</div> 
                     </div>
                {% endblock %}
+               <script>
+                    function ToOrder(){
+                       location.assign("/order/");
+                    }
+               </script>
       		 </div><!--购物车结束 -->
           </div><!--/.span3 112行-->
       </div><!--.row-fluid-->
